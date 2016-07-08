@@ -24,7 +24,9 @@ int main(int argc, char *argv[])
     // int width = settings.value( "width", -1 ).toInt();
     // int height = settings.value( "height", -1 ).toInt();
     // settings.endGroup();
-    
+    // if( x > 0 && y > 0 && width > 0 && height > 0 ) {
+    //     w.setGeometry( x, y, width, height );
+    // }
     
     
     w.setMinimumSize(400,200);
