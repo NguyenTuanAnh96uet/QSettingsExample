@@ -54,4 +54,43 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+void  MainWindow::saveWndInfo(QWidget *w)
+{  
+    QSettings settings(settingsFileName, QSettings::NativeFormat);
+    settings.beginGroup(w->windowTitle());
+    {
+        settings.setValue( "x", w->x() );
+        settings.setValue( "y", w->y() );
+        settings.setValue( "width", w->width() );
+        settings.setValue( "height", w->height() );
+    }
+    settings.endGroup();
+}
 
+void  MainWindow::readWndInfo(QWidget *w,QString &errText)
+{
+    QSettings settings(settingsFileName, QSettings::NativeFormat);
+    settings.beginGroup(w->windowTitle());
+    {
+        bool b=false;
+        bool rez=true;
+        int x = settings.value( "x", -1 ).toInt(b);
+        rez&=b;
+        int y = settings.value( "y", -1 ).toInt(b);
+        rez&=b;
+        int width = settings.value( "width", -1 ).toInt(b);
+        rez&=b;
+        int height = settings.value( "height", -1 ).toInt(b);
+        rez&=b;
+        if(!rez){
+            errText="Ошибка в данных для текущего положения окна"+w->windowTitle()+
+                    "в файле "+settingsFileName+".";
+        }
+        else{
+            if( x > 0 && y > 0 && width > 0 && height > 0 ) {
+                w->setGeometry( x, y, width, height );
+            } 
+        }
+    }
+    settings.endGroup();
+}
