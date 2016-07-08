@@ -45,7 +45,11 @@ void MainWindow::on_pb_setValue()
     QSettings settings(settingsFileName, QSettings::NativeFormat);
     settings.setValue(key, val);
 }
-
+void MainWindow::writeSetting(const QString &key, const QVariant &variant)
+{
+    QSettings settings(settingsFileName, QSettings::NativeFormat);
+    settings.setValue(key, variant);
+}
 MainWindow::~MainWindow()
 {
     delete ui;
