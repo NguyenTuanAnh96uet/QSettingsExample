@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+    writeSetting(const QString &key, const QVariant &variant);
 private:
     Ui::MainWindow *ui;
 private:
