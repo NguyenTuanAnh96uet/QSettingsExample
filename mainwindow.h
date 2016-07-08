@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include <QWidget>
 #include <QMainWindow>
 namespace Ui {
 class MainWindow;
@@ -14,6 +14,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     writeSetting(const QString &key, const QVariant &variant);
+    static void saveWndInfo(QWidget *w);
+    static void readWndInfo(QWidget *w, QString &errText="");
 private:
     Ui::MainWindow *ui;
 private:
